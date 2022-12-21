@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const CalendarDiv = styled.div`
+`
+
+// CalendarHeader.jsx 시작
 export const HeaderDiv = styled.div`
   flex-direction: column;
   height: 97px;
@@ -28,7 +32,6 @@ export const MonthMoveBtn = styled.button`
 `;
 
 export const Main = styled.main`
-  height: calc(100vh - 97px);
 `;
 
 export const Week = styled.div`
@@ -42,7 +45,6 @@ export const Week = styled.div`
 export const DatesDiv = styled.div`
   display: flex;
   width: 100%;
-  height: calc(100vh - 97px);
   flex-wrap: wrap;
 `;
 
@@ -55,11 +57,13 @@ export const DayText = styled.span`
   color: #6e6b7b;
   font-weight: 600;
 `;
+// CalendarHeader.jsx 끝
 
+// CalendarMain.jsx 시작
 export const DateWrap = styled.div`
     box-sizing: border-box;
     width: calc(100% / 7);
-    height: calc(100% / 5);
+    height: calc((100vh - 97px) / 5);
     text-align: left;
     border-bottom: 1px solid #e9eaec;
     border-right: 1px solid #e9eaec;
@@ -73,3 +77,25 @@ export const DateDiv = styled.div`
 export const DateText = styled.span`
   color: #6E6B7B;
 `;
+
+export const OpenTitleWrap = styled.div`
+  background: #7367F0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+`
+
+export const OpenTitleDiv = styled.div`
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+`
+
+export const OpenTitle = styled.p`
+  color: white;
+  font-size: 14px;
+  margin: 0;
+`;
+// CalendarMain.jsx 끝
