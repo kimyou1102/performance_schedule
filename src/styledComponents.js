@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const CalendarDiv = styled.div`
+  padding-left: 20%;
 `
 
 // CalendarHeader.jsx 시작
@@ -99,3 +100,40 @@ export const OpenTitle = styled.p`
   margin: 0;
 `;
 // CalendarMain.jsx 끝
+
+
+// Side.jsx 시작
+export const SideDiv = styled.div`
+  position: absolute;
+  width: 20%;
+  height: 100%;
+  border-right: 1px solid #EBE9F1;
+  box-sizing: border-box;
+  padding: 20px;
+`;
+
+export const AddBtn = styled.button`
+  background: #7367F0;
+  border-radius: 5px;
+  width: 100%;
+  height: 38px;
+  color: white;
+  border: none;
+`;
+
+export const CheckBoxs = styled.div`
+  margin-top: 20px;
+`;
+
+export const CheckBoxDiv = styled.div`
+  margin-bottom: 16px;
+`;
+
+export const CheckBox = styled.input`
+  accent-color: ${(props) => props.color };
+  filter: drop-shadow(0px 2px 4px rgba(115, 103, 240, 0.4));
+`;
+
+export const Label = styled.label`
+
+`;
