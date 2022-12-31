@@ -33,7 +33,7 @@ const CalendarMain = ({
             <DateWrap key={index} id={date}>
               <DateDiv opacity="0.3">
                 <DateText>{day}</DateText>
-                {performanceData[date] !== undefined ? (
+                {performanceData[date] ? (
                   <OpenTitleWrap>
                       <OpenTitleDiv>
                       <OpenTitle>{performanceData[date].title}</OpenTitle>
@@ -53,7 +53,7 @@ const CalendarMain = ({
             <DateWrap key={index} id={date}>
               <DateDiv>
                 <DateText>{day}</DateText>
-                {performanceData[date] !== undefined ? (
+                {performanceData[date] ? (
                   <OpenTitleWrap>
                       <OpenTitleDiv>
                       <OpenTitle>{performanceData[date].title}</OpenTitle>
@@ -72,7 +72,7 @@ const CalendarMain = ({
             <DateWrap key={index} id={date}>
               <DateDiv opacity="0.4">
                 <DateText>{day}</DateText>
-                {performanceData[date] !== undefined ? (
+                {performanceData[date] ? (
                   <OpenTitleWrap>
                       <OpenTitleDiv>
                       <OpenTitle>{performanceData[date].title}</OpenTitle>
