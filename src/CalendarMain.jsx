@@ -33,14 +33,14 @@ const CalendarMain = ({
             <DateWrap key={index} id={date}>
               <DateDiv opacity="0.3">
                 <DateText>{day}</DateText>
-                {performanceData[date] ? (
-                  <OpenTitleWrap>
-                      <OpenTitleDiv>
-                      <OpenTitle>{performanceData[date].title}</OpenTitle>
-                    </OpenTitleDiv>
-                  </OpenTitleWrap>
-                  
-                ) : null}
+                {performanceData.map((info, i) => (
+                  info.date === date ? 
+                    <OpenTitleWrap key={i}>
+                        <OpenTitleDiv>
+                        <OpenTitle>{info.title}</OpenTitle>
+                      </OpenTitleDiv>
+                    </OpenTitleWrap> : null)) 
+                }
               </DateDiv>
             </DateWrap>
           );
@@ -53,13 +53,14 @@ const CalendarMain = ({
             <DateWrap key={index} id={date}>
               <DateDiv>
                 <DateText>{day}</DateText>
-                {performanceData[date] ? (
-                  <OpenTitleWrap>
-                      <OpenTitleDiv>
-                      <OpenTitle>{performanceData[date].title}</OpenTitle>
-                    </OpenTitleDiv>
-                  </OpenTitleWrap>
-                ) : null}
+                {performanceData.map((info, i) => (
+                  info.date === date ? 
+                    <OpenTitleWrap key={i}>
+                        <OpenTitleDiv>
+                        <OpenTitle>{info.title}</OpenTitle>
+                      </OpenTitleDiv>
+                    </OpenTitleWrap> : null))
+                }
               </DateDiv>
             </DateWrap>
           );
@@ -72,13 +73,14 @@ const CalendarMain = ({
             <DateWrap key={index} id={date}>
               <DateDiv opacity="0.4">
                 <DateText>{day}</DateText>
-                {performanceData[date] ? (
-                  <OpenTitleWrap>
-                      <OpenTitleDiv>
-                      <OpenTitle>{performanceData[date].title}</OpenTitle>
-                    </OpenTitleDiv>
-                  </OpenTitleWrap>
-                ) : null}
+                {performanceData.map((info, i) => (
+                  info.date === date ? 
+                    <OpenTitleWrap key={i}>
+                        <OpenTitleDiv>
+                        <OpenTitle>{info.title}</OpenTitle>
+                      </OpenTitleDiv>
+                    </OpenTitleWrap> : null)) 
+                }
               </DateDiv>
             </DateWrap>
           );
