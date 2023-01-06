@@ -10,7 +10,7 @@ import {
 
 const Side = () => {
   return (
-    <SideDiv>
+    <SideDiv id="side">
       <AddBtn>Add New</AddBtn>
       <CheckBoxs>
         <CheckBoxDiv>

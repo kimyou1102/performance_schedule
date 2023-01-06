@@ -45,6 +45,7 @@ export const Week = styled.div`
 
 export const DatesDiv = styled.div`
   display: flex;
+  position: relative;
   width: 100%;
   flex-wrap: wrap;
 `;
@@ -69,6 +70,7 @@ export const DateWrap = styled.div`
     border-bottom: 1px solid #e9eaec;
     border-right: 1px solid #e9eaec;
     padding: 4px 8px;
+    cursor: pointer;
 `;
 
 export const DateDiv = styled.div`
@@ -79,11 +81,15 @@ export const DateText = styled.span`
   color: #6E6B7B;
 `;
 
-export const OpenTitleWrap = styled.div`
+export const OpenTitles = styled.ul`
+  list-style: none;
+  padding-left: 0px;
+`
+
+export const OpenTitleWrap = styled.li`
   background: #7367F0;
   padding: 4px 8px;
   border-radius: 4px;
-  cursor: pointer;
   margin-top: 10px;
 `
 
@@ -137,3 +143,32 @@ export const CheckBox = styled.input`
 export const Label = styled.label`
 
 `;
+
+// Side 끝
+
+
+// DayPopup 시작
+
+export const PopupDiv = styled.div`
+  display: none;
+  position: absolute;
+  width: calc((100% / 7) * 1.3);
+  min-height: 192px;
+  background: white;
+  border: 1px solid #e9eaec;
+`
+export const CloseBtn = styled.button`
+  
+`
+
+export const PopupUl = styled.ul`
+  list-style: none;
+  padding-left: 0px;
+`
+
+export const PopupLi = styled.li`
+
+`
+
+// DayPopup 끝
+

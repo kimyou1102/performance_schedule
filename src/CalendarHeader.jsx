@@ -17,7 +17,7 @@ import {
 const CalendarHeader = ({ year, month, before, next }) => {
   const weeks = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   return (
-    <HeaderDiv>
+    <HeaderDiv id="header">
       <Header>
         <MonthMoveBtn marginRight="30px" onClick={before}>
           <FontAwesomeIcon icon={faChevronLeft} style={{ fontSize: "15px" }} />
@@ -30,8 +30,8 @@ const CalendarHeader = ({ year, month, before, next }) => {
         </YearAndMonthText>
       </Header>
       <Week>
-        {weeks.map((week) => (
-          <Day>
+        {weeks.map((week, i) => (
+          <Day key={i}>
             <DayText>{week}</DayText>
           </Day>
         ))}
