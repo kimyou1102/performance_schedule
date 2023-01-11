@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  Main,
   DatesDiv,
   DateWrap,
   DateDiv,
@@ -12,13 +11,14 @@ import {
 } from "./styledComponents";
 import DayPopup from "./DayPopup";
 
+import { useDispatch, useSelector } from "react-redux";
+
 const CalendarMain = ({
   year,
   month,
   lastDays,
   currentDays,
   nextDays,
-  performanceData,
 }) => {
   useEffect(() => {
     setTimeout(() => {}, 2000);
@@ -29,25 +29,21 @@ const CalendarMain = ({
   const [show, setShow] = useState('none');
 
   const onListClick = (info, e) => {
-    //가장 상단 부모 찾기
     const wrap = e.target.closest('.wrap');
-    //상단의 부모 위치 얻기
     const defaultX = document.querySelector('#side').getBoundingClientRect().right;
     const defaultY = document.querySelector('#header').getBoundingClientRect().bottom;
     const x = wrap.getBoundingClientRect().left;
     const y = window.pageYOffset + wrap.getBoundingClientRect().top;
 
     setCoordinate({'x': x-defaultX, 'y': y-defaultY});
-
     setShow('block');
-
-    console.log(wrap);
     setData(info);
-    console.log(info);
   }
 
+  const performanceData = useSelector((state) => state.performanceData);
+
   return (
-    <Main>
+    <>
       <DatesDiv>
         {lastDays.map((day, index) => {
           const date = `${month !== 1 ? year : year - 1}.${
@@ -135,7 +131,7 @@ const CalendarMain = ({
         })}
         <DayPopup data={data} x={coordinate['x']} y={coordinate['y']} setShow={setShow} show={show}/>
       </DatesDiv>
-    </Main>
+    </>
   );
 };
 
