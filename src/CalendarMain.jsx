@@ -12,6 +12,7 @@ import {
 import DayPopup from "./DayPopup";
 
 import { useDispatch, useSelector } from "react-redux";
+import { getData } from "./dataAction";
 
 const CalendarMain = ({
   year,
@@ -39,8 +40,15 @@ const CalendarMain = ({
     setShow('block');
     setData(info);
   }
+  
+  const performanceData = useSelector((state) => state.performanceData) ?? [];
+  const dispatch = useDispatch();
 
-  const performanceData = useSelector((state) => state.performanceData);
+  useEffect(() => {
+    getData().then((result) => {
+      dispatch(result);
+    })
+  },[]);
 
   return (
     <>
