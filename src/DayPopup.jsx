@@ -5,14 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 <i class="fa-solid fa-xmark"></i>;
 const DayPopup = ({ data, x, y, setShow,show }) => {
-  console.log(data);
 
   return (
     <PopupDiv style={{ top: `${y}px`, left: `${x}px`,  display: `${show}`}}>
-      <CloseBtn>
-        <FontAwesomeIcon icon={faXmark} style={{ color: "#5E5873" }} onClick={() => {
+      <CloseBtn  onClick={() => {
           setShow('none');
-        }}/>
+        }}>
+        <FontAwesomeIcon icon={faXmark} style={{ color: "#5E5873" }}/>
       </CloseBtn>
       <PopupUl>
         <PopupLi>{data.date}</PopupLi>

@@ -121,7 +121,7 @@ export const SideDiv = styled.div`
 export const AddBtn = styled.button`
   background: #7367F0;
   border-radius: 5px;
-  width: 100%;
+  width: ${(props) => props.width || '100%'};
   height: 38px;
   color: white;
   border: none;
@@ -172,3 +172,12 @@ export const PopupLi = styled.li`
 
 // DayPopup 끝
 
+// MusicianAdd 시작
+
+export const MusicianAddInput = styled.input`
+  display: block;
+`
+
+
+
+// MusicianAdd 끝
