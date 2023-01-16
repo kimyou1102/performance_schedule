@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { PopupDiv, CloseBtn, PopupUl, PopupLi } from "./styledComponents";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

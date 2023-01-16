@@ -21,9 +21,6 @@ const CalendarMain = ({
   currentDays,
   nextDays,
 }) => {
-  useEffect(() => {
-    setTimeout(() => {}, 2000);
-  }, []);
 
   const [data, setData] = useState([]);
   const [coordinate, setCoordinate] = useState({});
