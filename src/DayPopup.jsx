@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const DayPopup = ({ data, x, y, setShow,show }) => {
 
   return (
-    <PopupDiv style={{ top: `${y}px`, left: `${x}px`,  display: `${show}`}}>
+    <PopupDiv style={{ bottom: `${y}px`, left: `${x}px`,  display: `${show}`}}>
       <CloseBtn  onClick={() => {
           setShow('none');
         }}>
