@@ -29,11 +29,13 @@ const CalendarMain = ({
   const onListClick = (info, e) => {
     const wrap = e.target.closest('.wrap');
     const defaultX = document.querySelector('#side').getBoundingClientRect().right;
-    const defaultY = document.querySelector('#header').getBoundingClientRect().bottom;
+    // const defaultY = document.querySelector('#header').getBoundingClientRect().height;
     const x = wrap.getBoundingClientRect().left;
-    const y = window.pageYOffset + wrap.getBoundingClientRect().top;
+    const bodyHeight = document.body.offsetHeight;
 
-    setCoordinate({'x': x-defaultX, 'y': y-defaultY});
+    const y = bodyHeight - (window.pageYOffset + wrap.getBoundingClientRect().bottom);
+
+    setCoordinate({'x': x-defaultX, 'y': y});
     setShow('block');
     setData(info);
   }
