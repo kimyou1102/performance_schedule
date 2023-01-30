@@ -40,7 +40,7 @@ const CalendarMain = ({
     setData(info);
   }
   
-  const performanceData = useSelector((state) => state.performanceData) ?? [];
+  const performanceData = useSelector((state) => state.performances.performanceData) ?? [];
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -48,6 +48,8 @@ const CalendarMain = ({
       dispatch(result);
     })
   },[]);
+
+  console.log(performanceData);
 
   return (
     <>
@@ -85,6 +87,7 @@ const CalendarMain = ({
             day > 9 ? day : `0${day}`
           }`;
           const matchs = performanceData.filter(data => data.date === date);
+
           return (
             <DateWrap key={index} id={date} className="wrap">
               <DateDiv>
