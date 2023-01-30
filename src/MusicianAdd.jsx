@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MusicianAddInput, AddBtn } from './styledComponents';
 import axios from 'axios';
+import { getData, getArtists } from "./dataAction";
+import { useDispatch, useSelector } from "react-redux";
 
 const MusicianAdd = () => {
     const [value, setValue] = useState('');
@@ -21,6 +23,25 @@ const MusicianAdd = () => {
         setValue('');
     }
 
+    const performanceData = useSelector((state) => state.performances.performanceData) ?? [];
+    const artists = useSelector((state) => state.artists.artists) ?? [];
+
+    const dispatch = useDispatch();
+
+
+    useEffect(() => {
+      getData().then((result) => {
+        dispatch(result);
+      });
+    
+      getArtists().then((result) => {
+        dispatch(result);
+      })
+    },[]);
+
+    console.log(performanceData);
+    console.log(artists);
+
     return (
         <div>
             <h1>가수들 추가하는 페이지</h1>
@@ -32,8 +53,7 @@ const MusicianAdd = () => {
                     setValue(e.target.value);
                 }}/>
                 <AddBtn width={'50%'}>추가하기</AddBtn>
-            </form>
-            <br></br>           
+            </form>            
         </div>
     );
 };

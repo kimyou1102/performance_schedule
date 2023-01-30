@@ -1,7 +1,7 @@
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 import axios from "axios";
 
-const reducer = (currentState, action) => {
+const performanceReducer = (currentState, action) => {
   if (currentState === undefined) {
     return {
       performanceData: [],
@@ -18,5 +18,27 @@ const reducer = (currentState, action) => {
   return newState;
 };
 
-const store = createStore(reducer);
+const artistReducer = (currentState, action) => {
+  if(currentState === undefined) {
+    return {
+      artists: [],
+    }
+  }
+
+  if(action.type === 'GET_ARTIST') {
+    return {
+      artists: action.payload,
+    }
+  }
+
+  const newState = { ...currentState };
+  return newState;
+}
+
+const reducers = combineReducers({
+  performances: performanceReducer,
+  artists: artistReducer
+})
+
+const store = createStore(reducers);
 export default store;
