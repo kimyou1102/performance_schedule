@@ -155,19 +155,35 @@ export const PopupDiv = styled.div`
   width: calc((100% / 7) * 1.3);
   min-height: 192px;
   background: white;
-  border: 1px solid #e9eaec;
+  // border: 1px solid #e9eaec;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 `
 export const CloseBtn = styled.button`
-  
+  float: right;
+  margin: 5px;
+  border: none;
+  background: transparent;
 `
 
 export const PopupUl = styled.ul`
+  float: left;
   list-style: none;
   padding-left: 0px;
+  padding: 15px;
+  margin: 0;
 `
 
 export const PopupLi = styled.li`
-
+  margin-bottom: 10px;
+  overflow: hidden;
+`
+export const ReserveBtn = styled.button`
+  border: none;
+  float: right;
+  padding: 5px;
+  cursor: pointer;
 `
 
 // DayPopup 끝
