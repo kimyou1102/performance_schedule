@@ -1,5 +1,6 @@
 import { createStore, combineReducers } from "redux";
-import axios from "axios";
+import { getData } from "./dataAction";
+
 
 const performanceReducer = (currentState, action) => {
   if (currentState === undefined) {
@@ -12,6 +13,15 @@ const performanceReducer = (currentState, action) => {
     return {
       performanceData: action.payload,
     };
+  }
+
+  if(action.type === 'ARTIST_FILTER') {
+    console.log(action.payload);
+    const {currentPerformanceData, selectArtists} = action.payload;
+
+    return {
+      performanceData: currentPerformanceData.filter((e) => selectArtists.includes(e.artist)),
+    }
   }
 
   const newState = { ...currentState };

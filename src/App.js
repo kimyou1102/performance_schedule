@@ -20,7 +20,9 @@ function App() {
           path="/calendar"
           element={
             <div style={{ position: "relative" }}>
-              <Side />
+              <Provider store={store}>
+                <Side />
+              </Provider>
               <Calendar />
             </div>
           }
