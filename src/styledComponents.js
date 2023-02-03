@@ -125,10 +125,13 @@ export const AddBtn = styled.button`
   height: 38px;
   color: white;
   border: none;
+  float: ${(props) => props.float || ''};
 `;
 
 export const CheckBoxs = styled.div`
-  margin-top: 20px;
+  margin: 20px 0;
+  height: 85%;
+  overflow-y: auto;
 `;
 
 export const CheckBoxDiv = styled.div`
@@ -142,6 +145,12 @@ export const CheckBox = styled.input`
 
 export const Label = styled.label`
 
+`;
+
+export const HomeBtn = styled.button`
+  border: none;
+  background: transparent;
+  cursor: pointer;
 `;
 
 // Side 끝
@@ -189,11 +198,57 @@ export const ReserveBtn = styled.button`
 // DayPopup 끝
 
 // MusicianAdd 시작
-
-export const MusicianAddInput = styled.input`
-  display: block;
+export const MusicianAddWrap = styled.div`
+  width: 325px;
+  margin: 0 auto;
 `
 
+export const ListText = styled.h1`
+  text-align: center;
+`
+export const MusicianAddBtn = styled.button`
+  background: transparent;
+  border: none;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+`;
 
+export const MusicianAddForm = styled.form`
+  margin: 0 auto;
+  overflow: hidden;
+`;
+
+export const MusicianAddInput = styled.input`
+  width: 100%;
+  box-sizing: border-box;
+  height: 30px;
+  margin: 10px 0;
+`
+
+export const BtnWrap = styled.div`
+  float: right;
+  width: 65%;
+`;
+
+export const CancleBtn = styled.button`
+  background: transparent;
+  border: none;
+  width: 49%;
+  height: 38px;
+  cursor: pointer;
+  color: #7367f0;
+`;
+
+export const ArtistUl = styled.ul`
+  list-style: none;
+  padding: 10px;
+  margin-top: 15px;
+`
+
+export const ArtistLi = styled.li`
+  font-size: 18px;
+  margin-bottom: 15px;
+`
 
 // MusicianAdd 끝
