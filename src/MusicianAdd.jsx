@@ -35,6 +35,15 @@ const MusicianAdd = () => {
       .catch((error) => {
         console.log(error);
       });
+
+      axios
+      .get(`http://127.0.0.1:8000/getTicketDatas/${value}`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     setValue('');
   };
 
