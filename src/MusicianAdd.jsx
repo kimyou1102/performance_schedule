@@ -48,6 +48,11 @@ const MusicianAdd = () => {
         console.log(error);
       });
 
+    getArtists().then((result) => {
+      console.log(result);
+    dispatch(result);
+    });
+
     setValue("");
   };
 
