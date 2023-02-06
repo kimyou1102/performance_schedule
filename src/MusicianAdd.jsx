@@ -3,8 +3,12 @@ import {
   MusicianAddWrap,
   ListText,
   MusicianAddForm,
+  MusicianAddInfo,
   InputInfo,
   MusicianAddInput,
+  MusicianColorWrap,
+  MusicianColorLabel,
+  MusicianColorInput,
   BtnWrap,
   CancleBtn,
   AddBtn,
@@ -13,6 +17,9 @@ import {
   ArtistLi,
   ArtistText,
   DeleteBtn,
+  ArtistEmptyWrap,
+  ArtistEmptyText,
+  ArtistEmptySubText,
   CalendarMoveBtn,
   CalendarLink,
   CalendarPageText,
@@ -23,41 +30,46 @@ import { useDispatch, useSelector } from "react-redux";
 import { faCirclePlus, faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-<i class="fa-solid fa-arrow-right-long"></i>
 const MusicianAdd = () => {
   const [value, setValue] = useState("");
   const [show, setShow] = useState("none");
+  const [emptyTextShow, setEmptyTextShow] = useState('block');
+  const [color, setColor] = useState('');
 
-  const button = useRef();
+  const colorInput = useRef();
 
   const submit = (e) => {
     e.preventDefault();
     if (value === "") return;
+    console.log(colorInput.current.value);
+    // axios
+    //   .post("http://127.0.0.1:8000/api/artist", {
+    //     name: value,
+    //     color: colorInput.current.value
+    //   })
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     getArtists().then((result) => {
+    //         dispatch(result);
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
 
-    axios
-      .post("http://127.0.0.1:8000/api/artist", {
-        name: value,
-      })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // axios
+    //   .get(`http://127.0.0.1:8000/getTicketDatas/${value}`)
+    //   .then((res) => {
+    //     console.log(res.data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
 
-    axios
-      .get(`http://127.0.0.1:8000/getTicketDatas/${value}`)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    getArtists().then((result) => {
-      console.log(result);
-        dispatch(result);
-    });
+    // getArtists().then((result) => {
+    //   console.log(result);
+    //     dispatch(result);
+    // });
 
     setValue("");
   };
@@ -96,10 +108,11 @@ const MusicianAdd = () => {
     getArtists().then((result) => {
       dispatch(result);
     });
+
   }, []);
 
 //   console.log(performanceData);
-//   console.log(artists);
+  // console.log(artists);
 
   return (
     <MusicianAddWrap>
@@ -111,39 +124,50 @@ const MusicianAdd = () => {
         />
       </MusicianAddBtn>
       <MusicianAddForm onSubmit={submit} style={{ display: `${show}` }}>
-        <InputInfo>💡 한글과 영어를 다 작성하면 정확도가 올라갑니다.</InputInfo>
+        <MusicianAddInfo>가수명</MusicianAddInfo>
+        <InputInfo>💡 한글과 영어를 각각 작성하면 정확도가 올라갑니다.</InputInfo>
         <MusicianAddInput
           value={value}
           onChange={(e) => {
             setValue(e.target.value);
           }}
         />
+        <MusicianAddInfo>색상</MusicianAddInfo>
+        <MusicianColorWrap>
+          <MusicianColorLabel htmlFor="colorPicker" color={color}/>
+          <MusicianColorInput type="color" name="color" id="colorPicker" ref={colorInput}/>
+        </MusicianColorWrap>
         <BtnWrap>
           <CancleBtn onClick={cancleClick} type="button">취소</CancleBtn>
           <AddBtn width="49%" float="right">추가</AddBtn>
         </BtnWrap>
       </MusicianAddForm>
-      <ArtistUl>
-        {artists.length !== 0 ? (
-          <>
+      {artists.length !== 0 ? (
+        <>
+          <ArtistUl>
             {artists.map((data, index) => (
               <ArtistLi key={index} id={data.id}>
                 <ArtistText>{data.name}</ArtistText>
                 <DeleteBtn onClick={artistDeleteClick}>삭제</DeleteBtn>
               </ArtistLi>
             ))}
-            <CalendarMoveBtn>
-              <CalendarLink to="/calendar">
-                <CalendarPageText>공연예매 달력 보러 가기</CalendarPageText>
-                <FontAwesomeIcon
-                  icon={faArrowRightLong}
-                  style={{ fontSize: "18px", color: "white" }}
-                />
-              </CalendarLink>
-            </CalendarMoveBtn>
-          </>
-        ) : null}
-      </ArtistUl>
+          </ArtistUl>
+          <CalendarMoveBtn>
+            <CalendarLink to="/calendar">
+              <CalendarPageText>공연예매 달력 보러 가기</CalendarPageText>
+              <FontAwesomeIcon
+                icon={faArrowRightLong}
+                style={{ fontSize: "18px", color: "white" }}
+              />
+            </CalendarLink>
+          </CalendarMoveBtn>
+        </>  
+      ) :
+        <ArtistEmptyWrap show={emptyTextShow}>
+          <ArtistEmptyText>관심있는 가수가 없어요.</ArtistEmptyText>
+          <ArtistEmptySubText>예매정보를 받고 싶은 가수를 추가해주세요.</ArtistEmptySubText>    
+        </ArtistEmptyWrap>
+      }
     </MusicianAddWrap>
   );
 };

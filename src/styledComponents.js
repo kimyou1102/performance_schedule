@@ -88,7 +88,7 @@ export const OpenTitles = styled.ul`
 `
 
 export const OpenTitleWrap = styled.li`
-  background: #7367F0;
+  background: ${(props) => props.color || '#7367F0'};
   padding: 4px 8px;
   border-radius: 4px;
   margin-top: 10px;
@@ -101,7 +101,8 @@ export const OpenTitleDiv = styled.div`
   box-sizing: border-box;
 `
 
-export const OpenTitle = styled.p`
+export const OpenTitle = styled.p
+`
   color: white;
   font-size: 14px;
   margin: 0;
@@ -223,7 +224,12 @@ export const MusicianAddForm = styled.form`
   overflow: hidden;
 `;
 
-export const InputInfo = styled.h2`
+export const MusicianAddInfo = styled.p`
+  margin: 10px 0;
+  color: #b6b6b6;
+`
+
+export const InputInfo = styled.p`
   margin: 20px 0;
   font-size: 14px;
 `
@@ -233,6 +239,32 @@ export const MusicianAddInput = styled.input`
   box-sizing: border-box;
   height: 30px;
   margin-bottom: 10px;
+  &:focus {
+    outline: none;
+  }
+`
+
+export const MusicianColorWrap = styled.div`
+  position: relative;
+  margin-bottom: 30px;
+`
+
+export const MusicianColorLabel = styled.label`
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background: ${(props) => props.color};
+  border-radius: 10px;
+  cursor: pointer;
+
+`
+
+export const MusicianColorInput = styled.input`
+  left: 0;
+  position: absolute;
+  height: 50px;
+  pointer-events: none;
+  opacity: 0;
 `
 
 export const BtnWrap = styled.div`
@@ -249,12 +281,26 @@ export const CancleBtn = styled.button`
   color: #7367f0;
 `;
 
+export const ArtistEmptyWrap = styled.div`
+  margin: 50px 0;
+  text-align: center;
+  display: ${(props) => props.show};
+`
+
+export const ArtistEmptyText = styled.h2`
+  margin-bottom: 20px;
+`
+
+export const ArtistEmptySubText = styled.p`
+  margin: 0;
+`
+
 export const ArtistUl = styled.ul`
   list-style: none;
   padding: 10px;
   margin-top: 15px;
   overflow-y: auto;
-  height: 55%;
+  height: 55vh;
   &::-webkit-scrollbar{
     width: 10px;
   }
