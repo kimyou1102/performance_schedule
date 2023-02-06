@@ -29,6 +29,7 @@ const performanceReducer = (currentState, action) => {
 };
 
 const artistReducer = (currentState, action) => {
+  // console.log(action.type);
   if(currentState === undefined) {
     return {
       artists: [],
@@ -36,8 +37,15 @@ const artistReducer = (currentState, action) => {
   }
 
   if(action.type === 'GET_ARTIST') {
+    // console.log('겟 아티스트 : ', action.payload)
     return {
       artists: action.payload,
+    }
+  }
+
+  if(action.type === 'DELETE_ARTIST') {
+    return {
+      artists : currentState.artists.filter((artist) => artist.id !== action.payload),
     }
   }
 
