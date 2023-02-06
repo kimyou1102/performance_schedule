@@ -1,4 +1,4 @@
-import React, { useState, useEffect }  from "react";
+import React, { useState, useEffect, useRef }  from "react";
 import {
   SideDiv,
   AddBtn,
@@ -6,16 +6,23 @@ import {
   CheckBoxDiv,
   CheckBox,
   Label,
+  HomeBtn
 } from "./styledComponents";
 import { useDispatch, useSelector } from "react-redux";
 import { getArtists, getData } from "./dataAction";
+import { Link } from 'react-router-dom'
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Side = () => {
   const [selectArtists, setSelectArtists] = useState([]);
   const [selectOption, setSelectOption] = useState('전체 선택');
+  const [checked, setChecked] = useState(0)
 
   const dispatch = useDispatch();
   const artists = useSelector((state) => state.artists.artists);
+
+  const optionText = useRef();
 
   useEffect(() => {
     getArtists().then((result) => {
@@ -23,17 +30,26 @@ const Side = () => {
     })
   }, [])
 
+  useEffect(() => {
+    if(checked === 0) {
+      setSelectOption('전체 선택');
+      optionText.current.checked = false;
+    }
+  }, [checked])
+
   const filterChange = (e) => {
     const artistName = e.target.id.replace('View', '');
     if(e.target.checked) {
       setSelectArtists((selectArtists) => [...selectArtists, artistName]);
       e.target.closest("#checkBoxWrap").children[0].children[0].checked = true;
       setSelectOption('선택 해제');
+      setChecked((count) => count + 1);
     } else {
       const index = selectArtists.indexOf(artistName);
       const arr = [...selectArtists];
       arr.splice(index, 1);
       setSelectArtists(arr);
+      setChecked((count) => count - 1);
     }
   }
 
@@ -73,7 +89,7 @@ const Side = () => {
       <AddBtn>Add New</AddBtn>
       <CheckBoxs id="checkBoxWrap">
         <CheckBoxDiv>
-          <CheckBox type="checkbox" id="allView" name="check" color="#7367F0" onChange={filterOption} value={selectOption}/>
+          <CheckBox type="checkbox" id="allView" name="check" color="#7367F0" onChange={filterOption} value={selectOption} ref={optionText} />
           <Label htmlFor="allView">{selectOption}</Label>
         </CheckBoxDiv>
         {artists.length > 0 ? 
@@ -84,6 +100,12 @@ const Side = () => {
             </CheckBoxDiv>
           )) : null}
       </CheckBoxs>
+      <Link to='/'>
+        <HomeBtn>
+          <FontAwesomeIcon icon={faHouse} style={{ fontSize: "19px", color: '#464646'}} />
+        </HomeBtn>
+      </Link>
+
     </SideDiv>
   );
 };
