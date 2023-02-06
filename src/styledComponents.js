@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 export const CalendarDiv = styled.div`
   padding-left: 20%;
@@ -199,11 +200,14 @@ export const ReserveBtn = styled.button`
 
 // MusicianAdd 시작
 export const MusicianAddWrap = styled.div`
-  width: 325px;
+  width: 400px;
+  min-height: 100vh;
   margin: 0 auto;
+  overflow: hidden;
 `
 
 export const ListText = styled.h1`
+  margin: 30px 0;
   text-align: center;
 `
 export const MusicianAddBtn = styled.button`
@@ -219,11 +223,16 @@ export const MusicianAddForm = styled.form`
   overflow: hidden;
 `;
 
+export const InputInfo = styled.h2`
+  margin: 20px 0;
+  font-size: 14px;
+`
+
 export const MusicianAddInput = styled.input`
   width: 100%;
   box-sizing: border-box;
   height: 30px;
-  margin: 10px 0;
+  margin-bottom: 10px;
 `
 
 export const BtnWrap = styled.div`
@@ -244,11 +253,74 @@ export const ArtistUl = styled.ul`
   list-style: none;
   padding: 10px;
   margin-top: 15px;
-`
+  overflow-y: auto;
+  height: 55%;
+  &::-webkit-scrollbar{
+    width: 10px;
+  }
+
+  /* 스크롤바 막대 설정*/
+  &::-webkit-scrollbar-thumb{
+      background-color: #eee;
+      border-radius: 10px;    
+  }
+
+  /* 스크롤바 뒷 배경 설정*/
+  &::-webkit-scrollbar-track{
+      background-color: rgba(0,0,0,0);
+  }
+`;
 
 export const ArtistLi = styled.li`
   font-size: 18px;
   margin-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `
 
+export const ArtistText = styled.span`
+
+`
+export const DeleteBtn = styled.button`
+  cursor: pointer;
+  border: none;
+`
+
+export const CalendarMoveBtn = styled.button`
+  border: none;
+  border-radius: 45px;
+  // background: #7367F0;
+  background: hsl(245,82%,67%);
+  padding: 19px 32px;
+  font-size: 18px;
+  display: block;
+  margin: 30px auto;
+  &:hover {
+    background: hsl(245,82%,72%);
+  }
+`
+
+export const CalendarLink = styled(Link)`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  // color: #433b3b;
+  color: white;
+
+  &visited {
+    // color: #433b3b;
+    color: white;
+  }
+
+  &:active {
+    // color: #433b3b;
+    color: white;
+  }
+`;
+
+export const CalendarPageText = styled.h3`
+  margin: 0 3px 0 0;
+`
 // MusicianAdd 끝

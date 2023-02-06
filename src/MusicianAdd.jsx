@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
 import {
   MusicianAddWrap,
   ListText,
   MusicianAddForm,
+  InputInfo,
   MusicianAddInput,
   BtnWrap,
   CancleBtn,
@@ -13,16 +13,22 @@ import {
   ArtistLi,
   ArtistText,
   DeleteBtn,
+  CalendarMoveBtn,
+  CalendarLink,
+  CalendarPageText,
 } from "./styledComponents";
 import axios from "axios";
 import { getArtists } from "./dataAction";
 import { useDispatch, useSelector } from "react-redux";
-import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import { faCirclePlus, faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+<i class="fa-solid fa-arrow-right-long"></i>
 const MusicianAdd = () => {
   const [value, setValue] = useState("");
   const [show, setShow] = useState("none");
+
+  const button = useRef();
 
   const submit = (e) => {
     e.preventDefault();
@@ -50,7 +56,7 @@ const MusicianAdd = () => {
 
     getArtists().then((result) => {
       console.log(result);
-    dispatch(result);
+        dispatch(result);
     });
 
     setValue("");
@@ -80,7 +86,7 @@ const MusicianAdd = () => {
         console.log(error);
       });
   }
-
+  
   const performanceData = useSelector((state) => state.performances.performanceData) ?? [];
   const artists = useSelector((state) => state.artists.artists) ?? [];
 
@@ -104,8 +110,8 @@ const MusicianAdd = () => {
           style={{ fontSize: "23px", color: "gray" }}
         />
       </MusicianAddBtn>
-
       <MusicianAddForm onSubmit={submit} style={{ display: `${show}` }}>
+        <InputInfo>💡 한글과 영어를 다 작성하면 정확도가 올라갑니다.</InputInfo>
         <MusicianAddInput
           value={value}
           onChange={(e) => {
@@ -126,12 +132,18 @@ const MusicianAdd = () => {
                 <DeleteBtn onClick={artistDeleteClick}>삭제</DeleteBtn>
               </ArtistLi>
             ))}
+            <CalendarMoveBtn>
+              <CalendarLink to="/calendar">
+                <CalendarPageText>공연예매 달력 보러 가기</CalendarPageText>
+                <FontAwesomeIcon
+                  icon={faArrowRightLong}
+                  style={{ fontSize: "18px", color: "white" }}
+                />
+              </CalendarLink>
+            </CalendarMoveBtn>
           </>
         ) : null}
       </ArtistUl>
-      <Link to="/calendar">
-        <h2>공연예매 달력 보러 가기🌹</h2>
-      </Link>
     </MusicianAddWrap>
   );
 };
