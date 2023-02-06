@@ -76,11 +76,17 @@ const MusicianAdd = () => {
 
   const addClick = () => {
     setShow("block");
+    if(artists.length === 0) {
+      setEmptyTextShow('none');
+    }
   };
 
   const cancleClick = () => {
     setShow("none");
     setValue("");
+    if(artists.length === 0) {
+      setEmptyTextShow('block');
+    }
   };
 
   const artistDeleteClick = (e) => {
@@ -99,6 +105,10 @@ const MusicianAdd = () => {
       });
   }
   
+  const colorChange = (e) => {
+    console.log(e.target.value);
+    setColor(e.target.value);
+  }
   const performanceData = useSelector((state) => state.performances.performanceData) ?? [];
   const artists = useSelector((state) => state.artists.artists) ?? [];
 
@@ -109,10 +119,11 @@ const MusicianAdd = () => {
       dispatch(result);
     });
 
+    setColor('#' + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, '0'));
   }, []);
 
 //   console.log(performanceData);
-  // console.log(artists);
+  console.log(artists);
 
   return (
     <MusicianAddWrap>
@@ -135,7 +146,7 @@ const MusicianAdd = () => {
         <MusicianAddInfo>색상</MusicianAddInfo>
         <MusicianColorWrap>
           <MusicianColorLabel htmlFor="colorPicker" color={color}/>
-          <MusicianColorInput type="color" name="color" id="colorPicker" ref={colorInput}/>
+          <MusicianColorInput type="color" name="color" id="colorPicker" onChange={colorChange} ref={colorInput}/>
         </MusicianColorWrap>
         <BtnWrap>
           <CancleBtn onClick={cancleClick} type="button">취소</CancleBtn>
