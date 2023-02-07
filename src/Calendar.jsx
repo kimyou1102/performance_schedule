@@ -50,7 +50,7 @@ const Calendar = () => {
     setLastDays(
       Array.from({ length: lastDayNum + 1 }, (v, i) => i + lastDay - lastDayNum)
     );
-  }, [lastDayNum]);
+  }, [lastDayNum, lastDay]);
 
   useEffect(() => {
     setCurrertDays(Array.from({ length: currentLastDay }, (v, i) => i + 1));
