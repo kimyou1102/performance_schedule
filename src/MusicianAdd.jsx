@@ -112,7 +112,7 @@ const MusicianAdd = () => {
     console.log(e.target.value);
     setColor(e.target.value);
   }
-  const performanceData = useSelector((state) => state.performances.performanceData) ?? [];
+
   const artists = useSelector((state) => state.artists.artists) ?? [];
 
   const dispatch = useDispatch();
@@ -123,7 +123,7 @@ const MusicianAdd = () => {
     });
 
     setColor('#' + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, '0'));
-  }, []);
+  }, [dispatch]);
 
 //   console.log(performanceData);
   // console.log(artists);

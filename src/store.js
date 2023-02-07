@@ -1,6 +1,4 @@
 import { createStore, combineReducers } from "redux";
-import { getData } from "./dataAction";
-
 
 const performanceReducer = (currentState, action) => {
   if (currentState === undefined) {
@@ -16,7 +14,6 @@ const performanceReducer = (currentState, action) => {
   }
 
   if(action.type === 'ARTIST_FILTER') {
-    console.log(action.payload);
     const {currentPerformanceData, selectArtists} = action.payload;
 
     return {

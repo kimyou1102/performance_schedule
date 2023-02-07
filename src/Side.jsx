@@ -28,7 +28,7 @@ const Side = () => {
     getArtists().then((result) => {
       dispatch(result);
     })
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     if(checked === 0) {
@@ -82,7 +82,7 @@ const Side = () => {
         })
       })
     }
-  }, [selectArtists]);
+  }, [selectArtists, selectOption, dispatch]);
 
   return (
     <SideDiv id="side">

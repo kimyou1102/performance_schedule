@@ -55,7 +55,7 @@ const CalendarMain = ({
       console.log(result);
         dispatch(result);
     });
-  },[]);
+  },[dispatch]);
 
   console.log(performanceData);
 
