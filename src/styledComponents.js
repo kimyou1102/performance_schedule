@@ -66,7 +66,7 @@ export const DayText = styled.span`
 export const DateWrap = styled.div`
     box-sizing: border-box;
     width: calc(100% / 7);
-    height: calc((100vh - 97px) / 5);
+    min-height: calc((100vh - 97px) / 5);
     text-align: left;
     border-bottom: 1px solid #e9eaec;
     border-right: 1px solid #e9eaec;
@@ -298,7 +298,7 @@ export const ArtistEmptySubText = styled.p`
 export const ArtistUl = styled.ul`
   list-style: none;
   padding: 10px;
-  margin-top: 15px;
+  margin: 35px 0 0 0;
   overflow-y: auto;
   height: 55vh;
   &::-webkit-scrollbar{
@@ -324,8 +324,20 @@ export const ArtistLi = styled.li`
   flex-direction: row;
   justify-content: space-between;
 `
+export const ArtistNameWrap = styled.div`
+  display: flex;
+  align-items: center;
+`
+export const ArtistColor = styled.div`
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: ${(props) => props.color};
+  border-radius: 5px;
+  margin-right: 10px;
+`
 
-export const ArtistText = styled.span`
+export const ArtistNameText = styled.span`
 
 `
 export const DeleteBtn = styled.button`

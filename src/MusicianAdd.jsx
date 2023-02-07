@@ -15,7 +15,9 @@ import {
   MusicianAddBtn,
   ArtistUl,
   ArtistLi,
-  ArtistText,
+  ArtistNameWrap,
+  ArtistNameText,
+  ArtistColor,
   DeleteBtn,
   ArtistEmptyWrap,
   ArtistEmptyText,
@@ -41,35 +43,36 @@ const MusicianAdd = () => {
   const submit = (e) => {
     e.preventDefault();
     if (value === "") return;
-    console.log(colorInput.current.value);
-    // axios
-    //   .post("http://127.0.0.1:8000/api/artist", {
-    //     name: value,
-    //     color: colorInput.current.value
-    //   })
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     getArtists().then((result) => {
-    //         dispatch(result);
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    const colorValue = colorInput.current.value === '#000000' ? color : colorInput.current.value
+    
+    axios
+      .post("http://127.0.0.1:8000/api/artist", {
+        name: value,
+        color: colorValue
+      })
+      .then((res) => {
+        console.log(res.data);
+        getArtists().then((result) => {
+            dispatch(result);
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-    // axios
-    //   .get(`http://127.0.0.1:8000/getTicketDatas/${value}`)
-    //   .then((res) => {
-    //     console.log(res.data);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    axios
+      .get(`http://127.0.0.1:8000/getTicketDatas/${value}`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-    // getArtists().then((result) => {
-    //   console.log(result);
-    //     dispatch(result);
-    // });
+    getArtists().then((result) => {
+      console.log(result);
+        dispatch(result);
+    });
 
     setValue("");
   };
@@ -123,7 +126,7 @@ const MusicianAdd = () => {
   }, []);
 
 //   console.log(performanceData);
-  console.log(artists);
+  // console.log(artists);
 
   return (
     <MusicianAddWrap>
@@ -156,9 +159,12 @@ const MusicianAdd = () => {
       {artists.length !== 0 ? (
         <>
           <ArtistUl>
-            {artists.map((data, index) => (
-              <ArtistLi key={index} id={data.id}>
-                <ArtistText>{data.name}</ArtistText>
+            {artists.map((artist, index) => (
+              <ArtistLi key={index} id={artist.id}>
+                <ArtistNameWrap>
+                  <ArtistColor color={artist.color} />
+                  <ArtistNameText>{artist.name}</ArtistNameText>
+                </ArtistNameWrap>
                 <DeleteBtn onClick={artistDeleteClick}>삭제</DeleteBtn>
               </ArtistLi>
             ))}
