@@ -46,7 +46,7 @@ const MusicianAdd = () => {
     const colorValue = colorInput.current.value === '#000000' ? color : colorInput.current.value
     
     axios
-      .post("http://127.0.0.1:8000/api/artist", {
+      .post("http://kimyugyeong.pythonanywhere.com/api/artist", {
         name: value,
         color: colorValue
       })
@@ -61,7 +61,7 @@ const MusicianAdd = () => {
       });
 
     axios
-      .get(`http://127.0.0.1:8000/getTicketDatas/${value}`)
+      .get(`http://kimyugyeong.pythonanywhere.com/getTicketDatas/${value}`)
       .then((res) => {
         console.log(res.data);
       })
@@ -96,7 +96,7 @@ const MusicianAdd = () => {
     const id = Number(e.target.closest('li').id);
 
     axios
-      .delete(`http://127.0.0.1:8000/api/artist/${id}`)
+      .delete(`http://kimyugyeong.pythonanywhere.com/api/artist/${id}`)
       .then((res) => {
         dispatch({
             type: "DELETE_ARTIST",
