@@ -12,7 +12,7 @@ import {
 import DayPopup from "./DayPopup";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getData } from "./dataAction";
+import { getData, getArtists } from "./dataAction";
 
 const CalendarMain = ({
   year,
@@ -40,13 +40,21 @@ const CalendarMain = ({
     setData(info);
   }
   
-  const performanceData = useSelector((state) => state.performances.performanceData) ?? [];
+  const performanceData = useSelector((state) => state.performances.performanceData);
+  const artists = useSelector((state) => state.artists.artists);
+  console.log(artists);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     getData().then((result) => {
       dispatch(result);
     })
+
+    getArtists().then((result) => {
+      console.log(result);
+        dispatch(result);
+    });
   },[]);
 
   console.log(performanceData);
@@ -69,7 +77,7 @@ const CalendarMain = ({
                     info.date === date ? 
                       <OpenTitleWrap key={i} onClick={(e) => {
                         onListClick(info, e);
-                      }}>
+                      }} color={artists.find((artist) => artist.id === info.artist_id)['color']}>
                           <OpenTitleDiv>
                           <OpenTitle>{info.title}</OpenTitle>
                         </OpenTitleDiv>
@@ -98,7 +106,7 @@ const CalendarMain = ({
                     info.date === date ? 
                       <OpenTitleWrap key={i} onClick={(e) => {
                         onListClick(info, e);
-                      }}>
+                      }} color={artists.find((artist) => artist.id === info.artist_id)['color']}>
                           <OpenTitleDiv>
                           <OpenTitle>{info.title}</OpenTitle>
                         </OpenTitleDiv>
@@ -126,7 +134,7 @@ const CalendarMain = ({
                     info.date === date ? 
                       <OpenTitleWrap key={i} onClick={(e) => {
                         onListClick(info, e);
-                      }}>
+                      }} color={artists.find((artist) => artist.id === info.artist_id)['color']}>
                           <OpenTitleDiv>
                           <OpenTitle>{info.title}</OpenTitle>
                         </OpenTitleDiv>
