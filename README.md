@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+## 📅 란?
+- 좋아하는 가수들의 공연 예매 정보를 달력에 나타내어 <strong>예매 정보를 한눈에 볼 수 있게 하는 서비스</strong>입니다. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br>
 
-## Available Scripts
+## 구상 이유
+1. sns는 정보들이 많아 공연 정보를 놓치는 경우가 많다.
+2. 해당 가수의 계정에서 자주 확인하는 방법이 있지만 귀찮다.
+3. 더 이상 예매 정보를 놓치고 싶지 않다.
+4. 많은 정보들을 한눈에 정리해서 보고 싶다.
 
-In the project directory, you can run:
+이러한 이유들로 구상하게 되었습니다.
 
-### `yarn start`
+## 📌 주요 기능
+- 가수 관리: 원하는 공연 정보를 얻고 싶은 가수를 관리합니다.
+- 공연 예매 정보 달력: 달력에 가수마다 다른 색상으로 해당하는 날짜에 공연 제목을 표시합니다.
+- 공연 예매 정보: 제목을 클릭하면 상세 내용과 예매 정보 링크로 이동합니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<br>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🔥기능 시현
 
-### `yarn test`
+### 가수 추가 페이지
+- 가장 첫 페이지인 가수 추가 페이지(추가한 가수가 없는 경우)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    ![image](https://user-images.githubusercontent.com/66080362/219338545-a389c317-4893-4181-95a5-937e4469a774.png)
 
-### `yarn build`
+- \+ 버튼을 클릭 시 가수를 추가 가능
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    ![image](https://user-images.githubusercontent.com/66080362/219338765-4d65d6f3-79d0-40e1-a021-9f0dfa665e45.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 입력 시현
+    ![GIF 2023-02-16 오후 7-34-14](https://user-images.githubusercontent.com/66080362/219341185-6c66a942-c1a2-431a-ab04-cefcb8a8ea5d.gif)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 가수가 있으면 공연 예매 달력 보러 가기 버튼 나타남
 
-### `yarn eject`
+    ![image](https://user-images.githubusercontent.com/66080362/219341427-75be4eba-3d58-42e4-b066-984c85c451b9.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+-  가수들 많이 추가한 버전
+    ![GIF 2023-02-16 오후 10-29-18](https://user-images.githubusercontent.com/66080362/219377859-62546a25-1414-4791-88c7-d9aeefa00df1.gif)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- 삭제 버튼 클릭 시 삭제
+    ![GIF 2023-02-16 오후 10-56-58](https://user-images.githubusercontent.com/66080362/219384381-5ba18d0c-85d7-4c54-a99e-f96dfcd012b6.gif)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<br>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 공연 예매 달력 페이지
 
-## Learn More
+- 가수의 색상별로 예매 정보를 달력에 표시
+![GIF 2023-02-16 오후 10-33-25](https://user-images.githubusercontent.com/66080362/219379013-0b7ec117-4237-410d-8844-0302f6f6f2c8.gif)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- 가수 필터링 기능
+    ![GIF 2023-02-16 오후 10-47-19](https://user-images.githubusercontent.com/66080362/219382061-0a563453-9d44-4fc0-935f-cc70a510cd12.gif)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 제목을 클릭하면 공연의 풀네임, 예매 일정, 예매 정보 링크로 이동
+    ![GIF 2023-02-16 오후 11-19-27](https://user-images.githubusercontent.com/66080362/219389966-baf5cf6e-2409-4c44-b796-eabce42053a4.gif)
 
-### Code Splitting
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## ➕ 추가하고 싶은 사항 (2023-02-16)
+- [ ] 삭제 버튼 눌렀을 때 한 번 더 물어보는 경고창 띄우기
+- [ ] 가수를 localStorage에 저장해서 다른 사람들도 사용할 수 있게 변경하기
+- [ ] 가수별 공연정보를 한눈에 볼 수 있는 달력 아닌 페이지
+- [ ] 코드 리팩토링하기
+- [ ] 레이어 팝업 디자인 변경
 
-### Analyzing the Bundle Size
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 📝자료
 
-### Making a Progressive Web App
+- 노션:
+- 블로그:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
