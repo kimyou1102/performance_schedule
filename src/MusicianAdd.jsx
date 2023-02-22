@@ -94,8 +94,8 @@ const MusicianAdd = () => {
 
   const artistDeleteClick = (e) => {
     const id = Number(e.target.closest('li').id);
-
-    axios
+    if(window.confirm('삭제하시겠습니까?')) {
+      axios
       .delete(`http://kimyugyeong.pythonanywhere.com/api/artist/${id}`)
       .then((res) => {
         dispatch({
@@ -106,6 +106,11 @@ const MusicianAdd = () => {
       .catch((error) => {
         console.log(error);
       });
+      alert('삭제되었습니다.');
+    } else {
+      alert('최소되었습니다.');
+    }
+    
   }
   
   const colorChange = (e) => {
@@ -125,8 +130,8 @@ const MusicianAdd = () => {
     setColor('#' + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, '0'));
   }, [dispatch]);
 
-//   console.log(performanceData);
-  // console.log(artists);
+  // console.log(performanceData);
+  console.log(artists);
 
   return (
     <MusicianAddWrap>
