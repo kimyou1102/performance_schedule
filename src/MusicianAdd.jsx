@@ -46,7 +46,8 @@ const MusicianAdd = () => {
     const colorValue = colorInput.current.value === '#000000' ? color : colorInput.current.value
     
     axios
-      .post("http://kimyugyeong.pythonanywhere.com/api/artist", {
+      // .post("http://kimyugyeong.pythonanywhere.com/api/artist", {
+      .post("http://127.0.0.1:8000/api/artist", {
         name: value,
         color: colorValue
       })
@@ -60,19 +61,19 @@ const MusicianAdd = () => {
         console.log(error);
       });
 
-    axios
-      .get(`http://kimyugyeong.pythonanywhere.com/getTicketDatas/${value}`)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // axios
+    //   .get(`http://kimyugyeong.pythonanywhere.com/getTicketDatas/${value}`)
+    //   .then((res) => {
+    //     console.log(res.data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
 
-    getArtists().then((result) => {
-      console.log(result);
-        dispatch(result);
-    });
+    // getArtists().then((result) => {
+    //   console.log(result);
+    //     dispatch(result);
+    // });
 
     setValue("");
   };
@@ -118,14 +119,24 @@ const MusicianAdd = () => {
     setColor(e.target.value);
   }
 
+  const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
+  const REDIRECT_URI = 'http://localhost:3000/oauth';
+  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+
+  const kakaoLoginClick = () => {
+    window.location.href = KAKAO_AUTH_URL;
+    let code = new URL(window.location.href).searchParams.get('code');
+    console.log(code);
+  }
+
   const artists = useSelector((state) => state.artists.artists) ?? [];
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getArtists().then((result) => {
-      dispatch(result);
-    });
+    // getArtists().then((result) => {
+    //   dispatch(result);
+    // });
 
     setColor('#' + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, '0'));
   }, [dispatch]);
@@ -136,6 +147,7 @@ const MusicianAdd = () => {
   return (
     <MusicianAddWrap>
       <ListText>List</ListText>
+      <button onClick={kakaoLoginClick}>로그인</button>
       <MusicianAddBtn onClick={addClick}>
         <FontAwesomeIcon
           icon={faCirclePlus}

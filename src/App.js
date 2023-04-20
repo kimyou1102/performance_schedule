@@ -5,6 +5,7 @@ import MusicianAdd from "./MusicianAdd";
 import { Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
+import KakaoAuthHandler from "./KakaoAuthHandler";
 
 function App() {
   return (
@@ -14,6 +15,11 @@ function App() {
         <Route path="/" element={
           <Provider store={store}>
             <MusicianAdd />
+          </Provider>
+        }></Route>
+        <Route path="/oauth" element={
+          <Provider store={store}>
+            <KakaoAuthHandler />
           </Provider>
         }></Route>
         <Route
