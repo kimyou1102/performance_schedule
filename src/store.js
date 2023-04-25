@@ -52,8 +52,8 @@ const artistReducer = (currentState, action) => {
 
 const reducers = combineReducers({
   performances: performanceReducer,
-  artists: artistReducer
+  artists: artistReducer,
 })
 
-const store = createStore(reducers);
-export default store;
+export const store = createStore(reducers);
+// export default store;
