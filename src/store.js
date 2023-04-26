@@ -1,4 +1,6 @@
 import { createStore, combineReducers } from "redux";
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 const performanceReducer = (currentState, action) => {
   if (currentState === undefined) {
@@ -50,10 +52,39 @@ const artistReducer = (currentState, action) => {
   return newState;
 }
 
-const reducers = combineReducers({
+const initalState = {
+  user: []
+};
+
+const userReducer = (state = initalState, action) => {
+  switch(action.type) {
+    case 'REGISTER_USER': 
+    return {
+      user: action.payload
+    };
+    case 'DELETE_USER':
+      return {
+        user: []
+      }
+    default:
+      return state;
+  }
+}
+
+const persistConfig = {
+  key: 'userInfo',
+  storage: storage,
+  whitelist: ['user'],
+};
+
+const rootReducer = combineReducers({
   performances: performanceReducer,
   artists: artistReducer,
+  user: userReducer
 })
 
-export const store = createStore(reducers);
+// export const store = createStore(reducers);
+export const persist = persistReducer(persistConfig, rootReducer)
+export const store = createStore(persist);
+export const persistor = persistStore(store);
 // export default store;

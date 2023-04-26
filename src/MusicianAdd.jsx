@@ -31,13 +31,24 @@ import { getArtists } from "./dataAction";
 import { useDispatch, useSelector } from "react-redux";
 import { faCirclePlus, faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useCookies } from 'react-cookie';
+
 
 const MusicianAdd = () => {
   const [value, setValue] = useState("");
   const [show, setShow] = useState("none");
   const [emptyTextShow, setEmptyTextShow] = useState('block');
   const [color, setColor] = useState('');
-
+  const [loginState, setLoginState] = useState(false);
+  const [nickname, setNickname] = useState('');
+  const COOKIE_KEY = 'access_token';
+  const [cookies, setCookie, removeCookie] = useCookies([COOKIE_KEY]);
+  const dispatch = useDispatch();
+  
+  const artists = useSelector((state) => state.artists.artists) ?? [];
+  // const artists = [];
+  const user = useSelector((state) => state.user.user) ?? [];
+  
   const colorInput = useRef();
 
   const submit = (e) => {
@@ -119,8 +130,10 @@ const MusicianAdd = () => {
     setColor(e.target.value);
   }
 
+
   const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
   const REDIRECT_URI = 'http://localhost:3000/oauth';
+  // const REDIRECT_URI = 'https://localhost:3000/oauth';
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
   const kakaoLoginClick = () => {
@@ -129,25 +142,50 @@ const MusicianAdd = () => {
     console.log(code);
   }
 
-  const artists = useSelector((state) => state.artists.artists) ?? [];
+  const logoutClick = () => {
+    axios.get('https://127.0.0.1/account/logout/')
+    .then((res) => {
+      removeCookie(COOKIE_KEY);
+      dispatch({
+        type: "DELETE_USER",
+      })
+      window.location.href = '/';
+      console.log(res);
+    })
+    .catch((err) => console.log(err));
+  }
 
-  const dispatch = useDispatch();
+  console.log(useSelector((state) => state));
 
   useEffect(() => {
-    // getArtists().then((result) => {
-    //   dispatch(result);
-    // });
+    if(cookies[COOKIE_KEY]) {
+      setLoginState(true);
+      if(user.length !== 0) {
+        setNickname(user.user_nickname);
+        getArtists(user.user_id).then((result) => {
+          dispatch(result);
+        });
+      }
+    }
+
+    
 
     setColor('#' + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, '0'));
   }, [dispatch]);
 
   // console.log(performanceData);
-  console.log(artists);
 
   return (
     <MusicianAddWrap>
       <ListText>List</ListText>
+      {loginState ? 
+      <>
+      <h2>{nickname}</h2>
+      <button onClick={logoutClick}>로그아웃</button>
+      </> : 
       <button onClick={kakaoLoginClick}>로그인</button>
+      
+      }
       <MusicianAddBtn onClick={addClick}>
         <FontAwesomeIcon
           icon={faCirclePlus}
