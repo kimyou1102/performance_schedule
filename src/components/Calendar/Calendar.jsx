@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { CalendarDiv } from './styledComponents'
+import { CalendarDiv } from "../../styledComponents";
 
-import CalendarHeader from "./CalendarHeader";
+import CalendarHeader from "../../CalendarHeader";
 import CalendarMain from "./CalendarMain";
-
-import { Provider } from "react-redux";
-import store from "./store";
 
 const Calendar = () => {
   const [lastDayNum, setLastDayNum] = useState(0);
@@ -64,16 +61,13 @@ const Calendar = () => {
         before={before}
         next={next}
       />
-      <Provider store={store}>
-        <CalendarMain
-          year={currentYear}
-          month={currentMonth}
-          lastDays={lastDays}
-          currentDays={currentDays}
-          nextDays={nextDays}
-        />
-      </Provider>
-      
+      <CalendarMain
+        year={currentYear}
+        month={currentMonth}
+        lastDays={lastDays}
+        currentDays={currentDays}
+        nextDays={nextDays}
+      />
     </CalendarDiv>
   );
 };
