@@ -1,9 +1,7 @@
-import axios from "axios";
+import { getTicketApi } from "../../api/ticket/get-ticket-api";
 
 export const getData = async () => {
-  //API 호출
-  const res = await axios.get("http://kimyugyeong.pythonanywhere.com/api/tickets");
-  // const res = await axios.get("http://127.0.0.1:8000/api/tickets");
+  const res = await getTicketApi();
   return {
     type: "GET_DATA",
     payload: res.data,

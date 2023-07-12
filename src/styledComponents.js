@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const CalendarDiv = styled.div`
   padding-left: 20%;
-`
+`;
 
 // CalendarHeader.jsx 시작
 export const HeaderDiv = styled.div`
@@ -33,8 +33,7 @@ export const MonthMoveBtn = styled.button`
   cursor: pointer;
 `;
 
-export const Main = styled.main`
-`;
+export const Main = styled.main``;
 
 export const Week = styled.div`
   display: flex;
@@ -64,14 +63,14 @@ export const DayText = styled.span`
 
 // CalendarMain.jsx 시작
 export const DateWrap = styled.div`
-    box-sizing: border-box;
-    width: calc(100% / 7);
-    min-height: calc((100vh - 97px) / 5);
-    text-align: left;
-    border-bottom: 1px solid #e9eaec;
-    border-right: 1px solid #e9eaec;
-    padding: 4px 8px;
-    cursor: pointer;
+  box-sizing: border-box;
+  width: calc(100% / 7);
+  min-height: calc((100vh - 97px) / 5);
+  text-align: left;
+  border-bottom: 1px solid #e9eaec;
+  border-right: 1px solid #e9eaec;
+  padding: 4px 8px;
+  cursor: pointer;
 `;
 
 export const DateDiv = styled.div`
@@ -79,58 +78,56 @@ export const DateDiv = styled.div`
 `;
 
 export const DateText = styled.span`
-  color: #6E6B7B;
+  color: #6e6b7b;
 `;
 
 export const OpenTitles = styled.ul`
   list-style: none;
   padding-left: 0px;
-`
+`;
 
 export const OpenTitleWrap = styled.li`
-  background: ${(props) => props.color || '#7367F0'};
+  background: ${(props) => props.color || "#7367F0"};
   padding: 4px 8px;
   border-radius: 4px;
   margin-top: 10px;
-`
+`;
 
 export const OpenTitleDiv = styled.div`
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
   box-sizing: border-box;
-`
+`;
 
-export const OpenTitle = styled.p
-`
+export const OpenTitle = styled.p`
   color: white;
   font-size: 14px;
   margin: 0;
 `;
 // CalendarMain.jsx 끝
 
-
 // Side.jsx 시작
 export const SideDiv = styled.div`
   position: absolute;
   width: 20%;
   height: 100%;
-  border-right: 1px solid #EBE9F1;
+  border-right: 1px solid #ebe9f1;
   box-sizing: border-box;
   padding: 20px;
 `;
 
 export const AddBtn = styled.button`
-  background: #7367F0;
+  background: #7367f0;
   border-radius: 5px;
-  width: ${(props) => props.width || '100%'};
+  width: ${(props) => props.width || "100%"};
   height: 38px;
   color: white;
   border: none;
-  float: ${(props) => props.float || ''};
+  float: ${(props) => props.float || ""};
 `;
 
-export const CheckBoxs = styled.div`
+export const CheckBoxContainer = styled.div`
   margin: 20px 0;
   height: 85%;
   overflow-y: auto;
@@ -138,16 +135,19 @@ export const CheckBoxs = styled.div`
 
 export const CheckBoxDiv = styled.div`
   margin-bottom: 16px;
+
+  &.all {
+    border-bottom: 1px solid #8d8d8d;
+    padding-bottom: 10px;
+  }
 `;
 
 export const CheckBox = styled.input`
-  accent-color: ${(props) => props.color };
+  accent-color: ${(props) => props.color};
   filter: drop-shadow(0px 2px 4px rgba(115, 103, 240, 0.4));
 `;
 
-export const Label = styled.label`
-
-`;
+export const Label = styled.label``;
 
 export const HomeBtn = styled.button`
   border: none;
@@ -155,8 +155,40 @@ export const HomeBtn = styled.button`
   cursor: pointer;
 `;
 
-// Side 끝
+export const CheckBoxListWrap = styled.ul`
+  list-style-type: none;
+  padding: 0px;
+`;
 
+export const SelectBtn = styled.button`
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  /* font-weight: bold; */
+
+  /* background: #7367f0;
+  border-radius: 5px;
+  height: 38px;
+  color: white;
+  border: none; */
+
+
+  &.select {
+    border: none;
+    color: white;
+    background:  #7367f0;
+  }
+
+  &.clear {
+    border: none;
+    color: white;
+    background:  red;
+    /* border: 1px solid red;
+    color: red;
+    background: white; */
+  }
+`;
+// Side 끝
 
 // DayPopup 시작
 
@@ -170,13 +202,13 @@ export const PopupDiv = styled.div`
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-`
+`;
 export const CloseBtn = styled.button`
   float: right;
   margin: 5px;
   border: none;
   background: transparent;
-`
+`;
 
 export const PopupUl = styled.ul`
   float: left;
@@ -184,18 +216,18 @@ export const PopupUl = styled.ul`
   padding-left: 0px;
   padding: 15px;
   margin: 0;
-`
+`;
 
 export const PopupLi = styled.li`
   margin-bottom: 10px;
   overflow: hidden;
-`
+`;
 export const ReserveBtn = styled.button`
   border: none;
   float: right;
   padding: 5px;
   cursor: pointer;
-`
+`;
 
 // DayPopup 끝
 
@@ -205,12 +237,12 @@ export const MusicianAddWrap = styled.div`
   min-height: 100vh;
   margin: 0 auto;
   overflow: hidden;
-`
+`;
 
 export const ListText = styled.h1`
   margin: 30px 0;
   text-align: center;
-`
+`;
 export const MusicianAddBtn = styled.button`
   background: transparent;
   border: none;
@@ -227,12 +259,12 @@ export const MusicianAddForm = styled.form`
 export const MusicianAddInfo = styled.p`
   margin: 10px 0;
   color: #b6b6b6;
-`
+`;
 
 export const InputInfo = styled.p`
   margin: 20px 0;
   font-size: 14px;
-`
+`;
 
 export const MusicianAddInput = styled.input`
   width: 100%;
@@ -242,12 +274,12 @@ export const MusicianAddInput = styled.input`
   &:focus {
     outline: none;
   }
-`
+`;
 
 export const MusicianColorWrap = styled.div`
   position: relative;
   margin-bottom: 30px;
-`
+`;
 
 export const MusicianColorLabel = styled.label`
   display: inline-block;
@@ -256,8 +288,7 @@ export const MusicianColorLabel = styled.label`
   background: ${(props) => props.color};
   border-radius: 10px;
   cursor: pointer;
-
-`
+`;
 
 export const MusicianColorInput = styled.input`
   left: 0;
@@ -265,7 +296,7 @@ export const MusicianColorInput = styled.input`
   height: 50px;
   pointer-events: none;
   opacity: 0;
-`
+`;
 
 export const BtnWrap = styled.div`
   float: right;
@@ -285,15 +316,15 @@ export const ArtistEmptyWrap = styled.div`
   margin: 50px 0;
   text-align: center;
   display: ${(props) => props.show};
-`
+`;
 
 export const ArtistEmptyText = styled.h2`
   margin-bottom: 20px;
-`
+`;
 
 export const ArtistEmptySubText = styled.p`
   margin: 0;
-`
+`;
 
 export const ArtistUl = styled.ul`
   list-style: none;
@@ -301,19 +332,19 @@ export const ArtistUl = styled.ul`
   margin: 35px 0 0 0;
   overflow-y: auto;
   height: 55vh;
-  &::-webkit-scrollbar{
+  &::-webkit-scrollbar {
     width: 10px;
   }
 
   /* 스크롤바 막대 설정*/
-  &::-webkit-scrollbar-thumb{
-      background-color: #eee;
-      border-radius: 10px;    
+  &::-webkit-scrollbar-thumb {
+    background-color: #eee;
+    border-radius: 10px;
   }
 
   /* 스크롤바 뒷 배경 설정*/
-  &::-webkit-scrollbar-track{
-      background-color: rgba(0,0,0,0);
+  &::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0);
   }
 `;
 
@@ -323,11 +354,11 @@ export const ArtistLi = styled.li`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`
+`;
 export const ArtistNameWrap = styled.div`
   display: flex;
   align-items: center;
-`
+`;
 export const ArtistColor = styled.div`
   display: inline-block;
   width: 20px;
@@ -335,50 +366,32 @@ export const ArtistColor = styled.div`
   background: ${(props) => props.color};
   border-radius: 5px;
   margin-right: 10px;
-`
+`;
 
-export const ArtistNameText = styled.span`
-
-`
+export const ArtistNameText = styled.span``;
 export const DeleteBtn = styled.button`
   cursor: pointer;
   border: none;
-`
+`;
 
 export const CalendarMoveBtn = styled.button`
   border: none;
   border-radius: 45px;
-  // background: #7367F0;
-  background: hsl(245,82%,67%);
+  background: hsl(245, 82%, 67%);
   padding: 19px 32px;
   font-size: 18px;
-  display: block;
-  margin: 30px auto;
-  &:hover {
-    background: hsl(245,82%,72%);
-  }
-`
-
-export const CalendarLink = styled(Link)`
   display: flex;
   flex-direction: row;
   align-items: center;
-  text-decoration: none;
-  // color: #433b3b;
+  margin: 30px auto;
   color: white;
-
-  &visited {
-    // color: #433b3b;
-    color: white;
-  }
-
-  &:active {
-    // color: #433b3b;
-    color: white;
+  cursor: pointer;
+  &:hover {
+    background: hsl(245, 82%, 72%);
   }
 `;
 
 export const CalendarPageText = styled.h3`
   margin: 0 3px 0 0;
-`
+`;
 // MusicianAdd 끝

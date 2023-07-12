@@ -3,10 +3,12 @@ import {
   SideDiv,
   AddBtn,
   CheckBoxContainer,
+  CheckBoxListWrap,
+  HomeBtn,
+  SelectBtn,
   CheckBoxDiv,
   CheckBox,
   Label,
-  HomeBtn,
 } from "../../styledComponents";
 import { useDispatch, useSelector } from "react-redux";
 import { getArtists } from "../../stores/Actions/artistAction";
@@ -36,35 +38,46 @@ const Side = () => {
     getData().then((result) => {
       setTickets(result.payload);
     });
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (checked === 0) {
-      setSelectOption("전체 선택");
-      optionText.current.checked = false;
-    }
-  }, [checked]);
+  }, [dispatch, user.user_id]);
 
   const filterChange = (e) => {
-    console.log("======== filterChange ========");
-    const artistName = e.target.id.replace("View", "");
+    const artistName = e.target.id;
     console.log(artistName);
     if (e.target.checked) {
       setSelectArtists((selectArtists) => [...selectArtists, artistName]);
       e.target.closest("#checkBoxWrap").children[0].children[0].checked = true;
-      // setSelectOption("선택 해제");
-      // setChecked((count) => count + 1);
+      setSelectOption("선택 해제");
     } else {
       const index = selectArtists.indexOf(artistName);
       const arr = [...selectArtists];
       arr.splice(index, 1);
       setSelectArtists(arr);
-      setChecked((count) => count - 1);
     }
   };
+  console.log(selectArtists);
 
   const filterOption = (e) => {
     const checkboxDivs = e.target.closest("#checkBoxWrap").children;
+    console.log(checkboxDivs[1]);
+    console.log(e.target.checked);
+    console.log(artists);
+    if (e.target.checked) {
+      for (let checkboxDiv of checkboxDivs[1].children) {
+        const target = checkboxDiv.children[0];
+        target.checked = true;
+        console.log(checkboxDiv);
+      }
+      setSelectArtists(artists.map((artist) => artist.name));
+      setSelectOption("선택 해제");
+    } else {
+      for (let checkboxDiv of checkboxDivs[1].children) {
+        const target = checkboxDiv.children[0];
+        target.checked = false;
+      }
+      setSelectArtists([]);
+      setSelectOption("전체 선택");
+    }
+
     if (e.target.value === "선택 해제") {
       for (let checkboxDiv of checkboxDivs) {
         const target = checkboxDiv.children[0];
@@ -84,9 +97,7 @@ const Side = () => {
   };
 
   useEffect(() => {
-    if (selectOption !== "모두 보기") {
-      console.log("유즈 셋");
-      console.log(tickets);
+    if (selectOption !== "전체 선택") {
       dispatch({
         type: "ARTIST_FILTER",
         payload: {
@@ -97,31 +108,40 @@ const Side = () => {
     }
   }, [selectArtists, selectOption, dispatch, tickets]);
 
+  useEffect(() => {
+    if (selectArtists.length === 0) {
+      setSelectOption("전체 선택");
+      optionText.current.checked = false;
+    }
+  }, [selectArtists]);
+
   return (
     <SideDiv id="side">
-      <AddBtn>Add New</AddBtn>
+      {/* <AddBtn>Add New</AddBtn> */}
       <CheckBoxContainer id="checkBoxWrap">
-        <CheckBoxDiv>
+        <CheckBoxDiv className="all">
           <CheckBox
             type="checkbox"
-            id="allView"
+            id="all"
             name="check"
             color="#7367F0"
             onChange={filterOption}
             value={selectOption}
             ref={optionText}
           />
-          <Label htmlFor="allView">{selectOption}</Label>
+          <Label htmlFor="all">{selectOption}</Label>
         </CheckBoxDiv>
-        {artists.length > 0
-          ? artists.map((artist, index) => (
-              <CheckBoxs
-                key={index}
-                artist={artist}
-                filterChange={filterChange}
-              />
-            ))
-          : null}
+        <CheckBoxListWrap>
+          {artists.length > 0
+            ? artists.map((artist, index) => (
+                <CheckBoxs
+                  key={index}
+                  artist={artist}
+                  filterChange={filterChange}
+                />
+              ))
+            : null}
+        </CheckBoxListWrap>
       </CheckBoxContainer>
       <Link to="/">
         <HomeBtn>

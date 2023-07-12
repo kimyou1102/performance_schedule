@@ -8,7 +8,7 @@ import {
   OpenTitleDiv,
   OpenTitle,
 } from "../../styledComponents";
-import { getDate } from "../../hooks/getDate";
+import { getDate } from "../../utils/getDate";
 
 function CalendarDate({
   dates,
@@ -24,9 +24,7 @@ function CalendarDate({
     <>
       {dates.map((day, index) => {
         const date = getDate(type, year, month, day);
-        console.log(date);
         const matchs = performanceData.filter((data) => data.date === date);
-        console.log(dates, performanceData);
         return (
           <DateWrap key={index} id={date} className="wrap">
             <DateDiv opacity={opacity}>

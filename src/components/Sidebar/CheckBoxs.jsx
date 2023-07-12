@@ -6,17 +6,17 @@ export function CheckBoxs({ artist, filterChange }) {
     <CheckBoxDiv>
       <CheckBox
         type="checkbox"
-        id={`${artist.name}View`}
+        id={`${artist.name}`}
         name="check"
         color={artist.color}
         onChange={(e) => filterChange(e)}
       />
-      <label htmlFor={`${artist.name}View`}>{artist.name}</label>
+      <label htmlFor={`${artist.name}`}>{artist.name}</label>
     </CheckBoxDiv>
   );
 }
 
-const CheckBoxDiv = styled.div`
+const CheckBoxDiv = styled.li`
   margin-bottom: 16px;
 `;
 

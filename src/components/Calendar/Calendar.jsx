@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { CalendarDiv } from "../../styledComponents";
-
-import CalendarHeader from "../../CalendarHeader";
+import CalendarHeader from "./CalendarHeader";
 import CalendarMain from "./CalendarMain";
 
 const Calendar = () => {

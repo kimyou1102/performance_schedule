@@ -12,7 +12,7 @@ import {
   Week,
   Day,
   DayText,
-} from "./styledComponents";
+} from "../../styledComponents";
 
 const CalendarHeader = ({ year, month, before, next }) => {
   const weeks = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];

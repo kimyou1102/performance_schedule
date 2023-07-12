@@ -9,13 +9,13 @@ import { userReducer } from "./userReducer";
 const persistConfig = {
   key: "userInfo",
   storage: storage,
-  whitelist: ["user"],
+  whitelist: ["userReducer"],
 };
 
 const rootReducer = combineReducers({
-  performances: performanceReducer,
-  artists: artistReducer,
-  user: userReducer,
+  performanceReducer,
+  artistReducer,
+  userReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

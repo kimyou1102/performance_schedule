@@ -1,6 +1,6 @@
-import GlobalStyle from "./GlobalStyle";
+import GlobalStyle from "./styles/GlobalStyle";
 import CalendarPage from "./pages/CalendarPage";
-import MusicianAdd from "./MusicianAdd";
+import MusicianAddPage from "./pages/MusicianAddPage";
 import { Routes, Route } from "react-router-dom";
 import KakaoAuthHandler from "./pages/KakaoAuthHandler";
 
@@ -9,7 +9,7 @@ function App() {
     <>
       <GlobalStyle />
       <Routes>
-        <Route path="/" element={<MusicianAdd />}></Route>
+        <Route path="/" element={<MusicianAddPage />}></Route>
         <Route path="/oauth" element={<KakaoAuthHandler />}></Route>
         <Route path="/calendar" element={<CalendarPage />}></Route>
       </Routes>
