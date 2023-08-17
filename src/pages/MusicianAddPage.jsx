@@ -13,10 +13,12 @@ import MusicianAddSection from "../components/MusicianAdd/MusicianAddSection";
 import MusicianList from "../components/MusicianAdd/MusicianList";
 import { useDispatch, useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
+import { useIsMobile } from "../hooks/useIsMobile";
 import { getArtists } from "../stores/Actions/artistAction";
 import { logoutApi } from "../api/user/logout-apip";
 
 const MusicianAddPage = () => {
+  console.log("sdkjfdslfj");
   const [show, setShow] = useState(false);
   const [emptyTextShow, setEmptyTextShow] = useState("block");
   const [color, setColor] = useState("");
@@ -29,6 +31,8 @@ const MusicianAddPage = () => {
   const artists = useSelector((state) => state.artistReducer.artists) ?? [];
   const user = useSelector((state) => state.userReducer.user) ?? [];
 
+  const isMobile = useIsMobile();
+
   useEffect(() => {
     if (cookies[COOKIE_KEY]) {
       setLoginState(true);
@@ -40,10 +44,6 @@ const MusicianAddPage = () => {
         });
       }
     }
-
-    setColor(
-      "#" + (((1 << 24) * Math.random()) | 0).toString(16).padStart(6, "0")
-    );
   }, []);
 
   const addClick = () => {
@@ -74,7 +74,7 @@ const MusicianAddPage = () => {
   };
 
   return (
-    <MusicianAddWrap>
+    <MusicianAddWrap isMobile={isMobile}>
       <ListText>List</ListText>
       {loginState ? (
         <>

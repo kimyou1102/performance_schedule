@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CheckBoxs } from "./CheckBoxs";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 const Side = () => {
   const [selectArtists, setSelectArtists] = useState([]);
@@ -29,6 +30,8 @@ const Side = () => {
 
   const user = useSelector((state) => state.userReducer.user);
   const optionText = useRef();
+
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     getArtists(user.user_id).then((result) => {
@@ -116,7 +119,7 @@ const Side = () => {
   }, [selectArtists]);
 
   return (
-    <SideDiv id="side">
+    <SideDiv id="side" className={isMobile ? "mobile" : ""}>
       {/* <AddBtn>Add New</AddBtn> */}
       <CheckBoxContainer id="checkBoxWrap">
         <CheckBoxDiv className="all">

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   MusicianAddForm,
   MusicianAddInfo,
@@ -22,6 +22,12 @@ const MusicianAddSection = ({ artists, user, setEmptyTextShow, setShow }) => {
   const dispatch = useDispatch();
 
   const colorInput = useRef();
+
+  useEffect(() => {
+    setColor(
+      "#" + (((1 << 24) * Math.random()) | 0).toString(16).padStart(6, "0")
+    );
+  }, []);
 
   const postArtist = async (user_id, name, color) => {
     return await postArtistApi(user_id, name, color)

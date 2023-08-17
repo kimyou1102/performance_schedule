@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { CalendarDiv } from "../../styledComponents";
+import { CalendarDiv, NavBackground } from "../../styledComponents";
 import CalendarHeader from "./CalendarHeader";
 import CalendarMain from "./CalendarMain";
+import { useIsMobile } from "../../hooks/useIsMobile";
+import { useDispatch, useSelector } from "react-redux";
+import { invisible } from "../../stores/Actions/navShowAction";
 
 const Calendar = () => {
   const [lastDayNum, setLastDayNum] = useState(0);
@@ -12,6 +15,17 @@ const Calendar = () => {
   const [currentYear, setCurrentYear] = useState("");
   const [currentMonth, setCurrentMonth] = useState("");
   const [nextDays, setNextDays] = useState([]);
+
+  const isMobile = useIsMobile();
+
+  const dispatch = useDispatch();
+  const show = useSelector((state) => state.navShowReducer);
+
+  const onClick = (e) => {
+    if (show && !e.target.closest("#side")) {
+      dispatch(invisible());
+    }
+  };
 
   const next = () => {
     const date = new Date(currentYear, currentMonth, 1);
@@ -53,7 +67,7 @@ const Calendar = () => {
   }, [currentLastDay]);
 
   return (
-    <CalendarDiv>
+    <CalendarDiv isMobile={isMobile} onClick={onClick}>
       <CalendarHeader
         year={currentYear}
         month={currentMonth}
@@ -67,6 +81,7 @@ const Calendar = () => {
         currentDays={currentDays}
         nextDays={nextDays}
       />
+      <NavBackground className={show ? "show" : ""} />
     </CalendarDiv>
   );
 };

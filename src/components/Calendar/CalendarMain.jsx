@@ -5,6 +5,7 @@ import CalendarDate from "./CalendarDate";
 import { useDispatch, useSelector } from "react-redux";
 import { getData } from "../../stores/Actions/ticketAction";
 import { getArtists } from "../../stores/Actions/artistAction";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 const CalendarMain = ({ year, month, lastDays, currentDays, nextDays }) => {
   const [data, setData] = useState([]);
@@ -12,11 +13,14 @@ const CalendarMain = ({ year, month, lastDays, currentDays, nextDays }) => {
   const [show, setShow] = useState("none");
   const user = useSelector((state) => state.userReducer.user) ?? [];
 
+  const isMobile = useIsMobile();
+
   const onListClick = (info, e) => {
     const wrap = e.target.closest(".wrap");
-    const defaultX = document
-      .querySelector("#side")
-      .getBoundingClientRect().right;
+
+    const defaultX = isMobile
+      ? 0
+      : document.querySelector("#side").getBoundingClientRect().right;
     const x = wrap.getBoundingClientRect().left;
     const bodyHeight = document.body.offsetHeight;
 

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const CalendarDiv = styled.div`
-  padding-left: 20%;
+  padding-left: ${(props) => (props.isMobile ? "0px" : "20%")};
 `;
 
 // CalendarHeader.jsx 시작
@@ -14,14 +14,24 @@ export const HeaderDiv = styled.div`
 
 export const Header = styled.header`
   display: flex;
+  justify-content: space-between;
   align-items: center;
   height: 70%;
-  padding-left: 30px;
+  padding: 0px 30px;
+`;
+
+export const IconButton = styled.button`
+  width: ${(props) => props.width || "auto"};
+  height: ${(props) => props.height || "auto"};
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 `;
 
 export const YearAndMonthText = styled.span`
-  color: #5e5873;
+  color: #232325;
   font-size: 18px;
+  font-weight: bold;
 `;
 
 export const MonthMoveBtn = styled.button`
@@ -41,6 +51,7 @@ export const Week = styled.div`
   align-items: center;
   border-top: 1px solid #e9eaec;
   border-bottom: 1px solid #e9eaec;
+  font-size: ${(props) => (props.isMobile ? "0.7rem" : "1rem")};
 `;
 
 export const DatesDiv = styled.div`
@@ -69,7 +80,7 @@ export const DateWrap = styled.div`
   text-align: left;
   border-bottom: 1px solid #e9eaec;
   border-right: 1px solid #e9eaec;
-  padding: 4px 8px;
+  padding: ${(props) => (props.isMobile ? "4px 2px" : "4px 8px")};
   cursor: pointer;
 `;
 
@@ -79,6 +90,8 @@ export const DateDiv = styled.div`
 
 export const DateText = styled.span`
   color: #6e6b7b;
+  font-size: ${(props) => (props.isMobile ? "0.7rem" : "1rem")};
+  font-weight: bold;
 `;
 
 export const OpenTitles = styled.ul`
@@ -88,7 +101,7 @@ export const OpenTitles = styled.ul`
 
 export const OpenTitleWrap = styled.li`
   background: ${(props) => props.color || "#7367F0"};
-  padding: 4px 8px;
+  padding: ${(props) => (props.isMobile ? "2px 4px" : "4px 8px")};
   border-radius: 4px;
   margin-top: 10px;
 `;
@@ -102,8 +115,21 @@ export const OpenTitleDiv = styled.div`
 
 export const OpenTitle = styled.p`
   color: white;
-  font-size: 14px;
+  font-size: ${(props) => (props.isMobile ? "0.6rem" : "0.875rem")};
   margin: 0;
+`;
+
+export const NavBackground = styled.div`
+  display: none;
+  &.show {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.5);
+  }
 `;
 // CalendarMain.jsx 끝
 
@@ -115,6 +141,16 @@ export const SideDiv = styled.div`
   border-right: 1px solid #ebe9f1;
   box-sizing: border-box;
   padding: 20px;
+
+  &.mobile {
+    width: 50%;
+    z-index: 15;
+    height: 80%;
+    top: 0px;
+    background: #f4f4f4;
+    right: 0px;
+    border-radius: 8px 0px 0px 8px;
+  }
 `;
 
 export const AddBtn = styled.button`
@@ -172,17 +208,16 @@ export const SelectBtn = styled.button`
   color: white;
   border: none; */
 
-
   &.select {
     border: none;
     color: white;
-    background:  #7367f0;
+    background: #7367f0;
   }
 
   &.clear {
     border: none;
     color: white;
-    background:  red;
+    background: red;
     /* border: 1px solid red;
     color: red;
     background: white; */
@@ -233,7 +268,7 @@ export const ReserveBtn = styled.button`
 
 // MusicianAdd 시작
 export const MusicianAddWrap = styled.div`
-  width: 400px;
+  width: ${(props) => (props.isMobile ? "100%" : "400px")};
   min-height: 100vh;
   margin: 0 auto;
   overflow: hidden;
@@ -252,6 +287,7 @@ export const MusicianAddBtn = styled.button`
 `;
 
 export const MusicianAddForm = styled.form`
+  padding: 16px;
   margin: 0 auto;
   overflow: hidden;
 `;
@@ -328,7 +364,7 @@ export const ArtistEmptySubText = styled.p`
 
 export const ArtistUl = styled.ul`
   list-style: none;
-  padding: 10px;
+  padding: 16px;
   margin: 35px 0 0 0;
   overflow-y: auto;
   height: 55vh;
@@ -375,14 +411,15 @@ export const DeleteBtn = styled.button`
 `;
 
 export const CalendarMoveBtn = styled.button`
+  width: 85%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
   border-radius: 45px;
   background: hsl(245, 82%, 67%);
   padding: 19px 32px;
   font-size: 18px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   margin: 30px auto;
   color: white;
   cursor: pointer;
@@ -392,6 +429,7 @@ export const CalendarMoveBtn = styled.button`
 `;
 
 export const CalendarPageText = styled.h3`
-  margin: 0 3px 0 0;
+  margin: 0px;
+  margin-right: 10px;
 `;
 // MusicianAdd 끝

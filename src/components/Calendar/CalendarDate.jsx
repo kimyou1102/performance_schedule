@@ -9,6 +9,7 @@ import {
   OpenTitle,
 } from "../../styledComponents";
 import { getDate } from "../../utils/getDate";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 function CalendarDate({
   dates,
@@ -20,15 +21,17 @@ function CalendarDate({
   artists,
   opacity,
 }) {
+  const isMobile = useIsMobile();
+
   return (
     <>
       {dates.map((day, index) => {
         const date = getDate(type, year, month, day);
         const matchs = performanceData.filter((data) => data.date === date);
         return (
-          <DateWrap key={index} id={date} className="wrap">
+          <DateWrap key={index} id={date} className="wrap" isMobile={isMobile}>
             <DateDiv opacity={opacity}>
-              <DateText>{day}</DateText>
+              <DateText isMobile={isMobile}>{day}</DateText>
               {matchs.length > 0 ? (
                 <OpenTitles>
                   {performanceData.map((info, i) =>
@@ -43,9 +46,12 @@ function CalendarDate({
                             (artist) => artist.id === info.artist_id
                           )["color"]
                         }
+                        isMobile={isMobile}
                       >
                         <OpenTitleDiv>
-                          <OpenTitle>{info.title}</OpenTitle>
+                          <OpenTitle isMobile={isMobile}>
+                            {info.title}
+                          </OpenTitle>
                         </OpenTitleDiv>
                       </OpenTitleWrap>
                     ) : null

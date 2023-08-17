@@ -5,6 +5,7 @@ import storage from "redux-persist/lib/storage";
 import { performanceReducer } from "./performanceReducer";
 import { artistReducer } from "./artistReducer";
 import { userReducer } from "./userReducer";
+import { navShowReducer } from "./navShowReducer";
 
 const persistConfig = {
   key: "userInfo",
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   performanceReducer,
   artistReducer,
   userReducer,
+  navShowReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);
